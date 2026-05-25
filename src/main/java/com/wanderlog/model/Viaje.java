@@ -63,6 +63,13 @@ public class Viaje {
     public List<Destino> getDestinos() {
         return destinos;
     }
+
+    //Metodo
+    public void agregarDestino(Destino destinos){
+         this.destinos.add(destinos);
+    }
+
+
 }
 
 

@@ -42,4 +42,10 @@ public class Destino {
     public List<Actividad> getActividades() {
         return actividades;
     }
+
+    //Metodo
+
+    public void agregarActividad(Actividad actividades){
+        this.actividades.add(actividades);
+    }
 }
