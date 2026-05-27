@@ -1,5 +1,6 @@
 package com.wanderlog;
 
+import com.wanderlog.exception.ViajeNotFoundException;
 import com.wanderlog.model.Actividad;
 import com.wanderlog.model.Destino;
 import com.wanderlog.model.Usuario;
@@ -7,6 +8,7 @@ import com.wanderlog.model.Viaje;
 import com.wanderlog.model.enums.Rol;
 import com.wanderlog.model.enums.TipoActividad;
 import com.wanderlog.model.enums.VisibilidadViaje;
+import com.wanderlog.repository.ViajeRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -18,8 +20,11 @@ import static com.wanderlog.model.enums.VisibilidadViaje.PRIVADO;
 import static com.wanderlog.model.enums.VisibilidadViaje.PUBLICO;
 
 
+
 public class Main {
     public static void main (String [] args){
+        //OBJETOS
+
         Usuario usuario = new Usuario(1L, "Laura","Laurag@gmail.com", Rol.VIAJERO);
         Viaje viaje = new Viaje(1L, "Madrid Ideal", "Este es el viaje de tus sueños", LocalDate.of(2026,6,06), LocalDate.of(2026,6,07), PUBLICO, usuario);
         Destino destino = new Destino(2L, "Madrid", "España", "Clima mediterráneo");
@@ -28,34 +33,31 @@ public class Main {
         Viaje viaje2 = new  Viaje(2L, "Valencia", "Aqui tiene playas magnificas", LocalDate.of(2026, 6, 25), LocalDate.of(2026,7,20), PUBLICO, usuario);
         Viaje viaje3 = new  Viaje(3L, "Milán", "Todo a la moda", LocalDate.of(2026, 5, 25), LocalDate.of(2026,6,20), PRIVADO, usuario);
 
-        //Lista de viajes
+       //Objeto ViajeRepository
+        ViajeRepository repositorio = new ViajeRepository();
+       repositorio.guardar(viaje);
+       repositorio.guardar(viaje2);
+       repositorio.guardar(viaje3);
 
-        List<Viaje> todosLosViajes = new ArrayList<>();
-        todosLosViajes.add(viaje);
-        todosLosViajes.add(viaje2);
-        todosLosViajes.add(viaje3);
+
 
         //For each
 
-        todosLosViajes.forEach(v->System.out.println(v.getTitulo()));
+        repositorio.obtenerTodos().forEach(v->System.out.println(v.getTitulo()));
 
         //Stream
 
-        List<Viaje> viajesPublicos = todosLosViajes.stream()
+        List<Viaje> viajesPublicos =  repositorio.obtenerTodos().stream()
                 .filter(v -> v.getTitulo().contains("a"))
                 .collect(Collectors.toList());
         System.out.println("Viajes que contengan a: " + viajesPublicos.size());
 
         //Buscar viaje por id
 
-        Optional<Viaje> resultado = todosLosViajes.stream()
-                .filter(v->v.getId() == 2L)
-                        .findFirst();
-        if (resultado.isPresent()){
-            System.out.print("Encontrado: " + resultado.get().getTitulo());
-        }else {
-            System.out.println("Viaje no encontrado");
-        }
+        Viaje encontrado = repositorio.buscarPorId(2L);
+        System.out.println("Encontrado " + encontrado.getTitulo());
+
+
 
         //Llamada a metodos
 

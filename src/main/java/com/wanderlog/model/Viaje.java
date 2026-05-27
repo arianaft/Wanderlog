@@ -17,6 +17,7 @@ public class Viaje {
 
 
     //Constructor
+
     public Viaje(long id, String titulo, String descripcion, LocalDate fechaInicio,LocalDate fechaFin,
                  VisibilidadViaje visibilidad, Usuario usuario){
         this.id = id;
