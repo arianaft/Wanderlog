@@ -9,6 +9,7 @@ import com.wanderlog.model.enums.Rol;
 import com.wanderlog.model.enums.TipoActividad;
 import com.wanderlog.model.enums.VisibilidadViaje;
 import com.wanderlog.repository.ViajeRepository;
+import com.wanderlog.service.ViajeService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -33,28 +34,29 @@ public class Main {
         Viaje viaje2 = new  Viaje(2L, "Valencia", "Aqui tiene playas magnificas", LocalDate.of(2026, 6, 25), LocalDate.of(2026,7,20), PUBLICO, usuario);
         Viaje viaje3 = new  Viaje(3L, "Milán", "Todo a la moda", LocalDate.of(2026, 5, 25), LocalDate.of(2026,6,20), PRIVADO, usuario);
 
-       //Objeto ViajeRepository
-        ViajeRepository repositorio = new ViajeRepository();
-       repositorio.guardar(viaje);
-       repositorio.guardar(viaje2);
-       repositorio.guardar(viaje3);
 
+
+       //Objeto Service
+        ViajeService servicio = new ViajeService();
+        servicio.guardarViaje(viaje);
+        servicio.guardarViaje(viaje2);
+        servicio.guardarViaje(viaje3);
 
 
         //For each
 
-        repositorio.obtenerTodos().forEach(v->System.out.println(v.getTitulo()));
+        servicio.obtenerTodosViajes().forEach(v->System.out.println(v.getTitulo()));
 
         //Stream
 
-        List<Viaje> viajesPublicos =  repositorio.obtenerTodos().stream()
+        List<Viaje> viajesPublicos =  servicio.obtenerTodosViajes().stream()
                 .filter(v -> v.getTitulo().contains("a"))
                 .collect(Collectors.toList());
         System.out.println("Viajes que contengan a: " + viajesPublicos.size());
 
         //Buscar viaje por id
 
-        Viaje encontrado = repositorio.buscarPorId(2L);
+        Viaje encontrado = servicio.buscarViajeId(2L);
         System.out.println("Encontrado " + encontrado.getTitulo());
 
 
