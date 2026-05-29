@@ -1,28 +1,36 @@
 package com.wanderlog.service;
 
+import com.wanderlog.exception.ViajeNotFoundException;
 import com.wanderlog.model.Viaje;
 import com.wanderlog.repository.ViajeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
+
 public class ViajeService {
 
-    private ViajeRepository repositorio = new ViajeRepository();
+    @Autowired
+    private ViajeRepository repositorio;
 
-    //Metodo guardar
+    //Guarda viajes
+
     public void guardarViaje(Viaje viaje) {
-        repositorio.guardar(viaje);
+        repositorio.save(viaje);
     }
 
-    //Metodo devuelve todos los viajes
+    //Devuelve todos los viajes
 
     public List<Viaje> obtenerTodosViajes(){
-        return repositorio.obtenerTodos();
+        return repositorio.findAll();
     }
 
-    //Metodo buscar por id
+    //Buscar por id
+
     public Viaje buscarViajeId(Long id){
-        return repositorio.buscarPorId(id);
+        return repositorio.findById(id).orElseThrow(() -> new ViajeNotFoundException(id));
     }
 }

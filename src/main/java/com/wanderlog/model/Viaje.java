@@ -3,16 +3,30 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import com.wanderlog.model.enums.VisibilidadViaje;
+import jakarta.persistence.*;
+
+
+@Entity
+
+
 
 //Clase
 public class Viaje {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String titulo;
     private String descripcion;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
+
+    @Enumerated(EnumType.STRING)
     private VisibilidadViaje visibilidad;
+
+    @Transient
     private Usuario usuario;
+
+    @Transient
     private  List<Destino> destinos;
 
 
