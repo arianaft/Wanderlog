@@ -31,6 +31,7 @@ public class Viaje {
 
 
     //Constructor
+    public Viaje (){}
 
     public Viaje(long id, String titulo, String descripcion, LocalDate fechaInicio,LocalDate fechaFin,
                  VisibilidadViaje visibilidad, Usuario usuario){
@@ -78,6 +79,31 @@ public class Viaje {
     public List<Destino> getDestinos() {
         return destinos;
     }
+
+
+    //Setters
+
+    public void setTitulo(String titulo){
+        this.titulo = titulo;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFin(LocalDate fechaFin) {
+        this.fechaFin = fechaFin;
+    }
+
+    public void setVisibilidad(VisibilidadViaje visibilidad) {
+        this.visibilidad = visibilidad;
+    }
+
+
 
     //Metodo
     public void agregarDestino(Destino destinos){

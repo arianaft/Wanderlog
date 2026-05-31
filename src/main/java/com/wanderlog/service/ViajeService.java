@@ -18,8 +18,9 @@ public class ViajeService {
 
     //Guarda viajes
 
-    public void guardarViaje(Viaje viaje) {
-        repositorio.save(viaje);
+    public Viaje guardarViaje(Viaje viaje) {
+
+        return repositorio.save(viaje);
     }
 
     //Devuelve todos los viajes
@@ -33,4 +34,25 @@ public class ViajeService {
     public Viaje buscarViajeId(Long id){
         return repositorio.findById(id).orElseThrow(() -> new ViajeNotFoundException(id));
     }
+
+    public Viaje actualizarViaje(Long id, Viaje datos){
+        Viaje existente = buscarViajeId(id);
+        existente.setTitulo(datos.getTitulo());
+        existente.setDescripcion(datos.getDescripcion());
+        existente.setFechaInicio(datos.getFechaInicio());
+        existente.setFechaFin(datos.getFechaFin());
+        existente.setVisibilidad(datos.getVisibilidad());
+        return repositorio.save(existente);
+
+    }
+
+
+
+    public void eliminarViaje(Long id){
+        buscarViajeId(id);
+        repositorio.deleteById(id);
+    }
+
+
+
 }
