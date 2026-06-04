@@ -2,10 +2,14 @@ package com.wanderlog.model;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.wanderlog.model.enums.VisibilidadViaje;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
-
+@JsonInclude(JsonInclude.Include.NON_NULL)
 @Entity
 
 
@@ -15,12 +19,18 @@ public class Viaje {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotBlank
     private String titulo;
     private String descripcion;
+
+    @NotNull
     private LocalDate fechaInicio;
+    @NotNull
     private LocalDate fechaFin;
 
     @Enumerated(EnumType.STRING)
+    @NotNull
     private VisibilidadViaje visibilidad;
 
     @Transient

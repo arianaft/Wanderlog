@@ -2,6 +2,7 @@ package com.wanderlog.controller;
 
 import com.wanderlog.model.Viaje;
 import com.wanderlog.service.ViajeService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class ViajeController {
     //Guarda
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Viaje crear(@RequestBody Viaje viaje){
+    public Viaje crear(@RequestBody  @Valid Viaje viaje){
         return  servicio.guardarViaje(viaje);
     }
 
