@@ -36,7 +36,7 @@ public class Viaje {
     @Transient
     private Usuario usuario;
 
-    @Transient
+    @OneToMany(mappedBy = "viaje", cascade =  CascadeType.ALL)
     private  List<Destino> destinos;
 
 

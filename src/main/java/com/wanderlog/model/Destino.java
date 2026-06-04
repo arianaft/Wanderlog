@@ -1,18 +1,29 @@
 package com.wanderlog.model;
+import jakarta.persistence.*;
+
 import java.util.List;
 import java.util.ArrayList;
 
 //Clase
 
 
-
+@Entity
 public class Destino {
+    @Id
+    @GeneratedValue
     private Long id;
+
     private String ciudad;
     private String pais;
     private String descripcion;
-    private List<Actividad> actividades;
+    @OneToMany(mappedBy = "destino", cascade = CascadeType.ALL)
+    private List<Actividad> actividades = new ArrayList<>();
 
+    @ManyToOne
+    private Viaje viaje;
+
+
+    public Destino(){}
 
     //Constructor
     public Destino(Long id, String ciudad, String pais, String descripcion){
