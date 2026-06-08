@@ -1,10 +1,11 @@
 package com.wanderlog.controller;
 
-
 import com.wanderlog.model.Usuario;
 import com.wanderlog.model.enums.Rol;
 import com.wanderlog.repository.UsuarioRepository;
 import com.wanderlog.security.JwtUtil;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name = "Autenticación", description = "Registro y login de usuarios")
 public class AuthController {
 
     @Autowired
@@ -25,6 +27,7 @@ public class AuthController {
     private PasswordEncoder passwordEncoder;
 
     @PostMapping("/registro")
+    @Operation(summary = "Registrar un nuevo usuario")
     public Map<String, String> registro(@RequestBody Usuario usuario) {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
         usuario.setRol(Rol.VIAJERO);
@@ -33,6 +36,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
+    @Operation(summary = "Login — devuelve el token JWT")
     public Map<String, String> login(@RequestBody Usuario usuario) {
         Usuario existente = usuarioRepository.findByEmail(usuario.getEmail())
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
