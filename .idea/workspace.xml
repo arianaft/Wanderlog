@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a787cdce-1d5c-4efd-a479-dfeeee91adfd" name="Changes" comment="docs: documentacion  README.md del proyecto">
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/wanderlog/service/ViajeServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -47,6 +49,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "JUnit.ViajeServiceTest.executor": "Run",
     "Maven.Wanderlog [clean].executor": "Run",
     "Maven.Wanderlog [package].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -61,7 +64,7 @@
     "project.structure.side.proportion": "0.2"
   }
 }]]></component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JUnit.ViajeServiceTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <envs>
         <env name="DATABASE_USERNAME" value="postgres" />
@@ -82,8 +85,24 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ViajeServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="Wanderlog" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.wanderlog.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.wanderlog.service" />
+      <option name="MAIN_CLASS_NAME" value="com.wanderlog.service.ViajeServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ViajeServiceTest" />
         <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
