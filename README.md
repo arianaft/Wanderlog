@@ -29,3 +29,7 @@ Proyecto en desarrollo — fase de modelado de dominio.
 ```bash
 git clone https://github.com/tu-usuario/wanderlog.git
 cd wanderlog
+
+## API en producción
+
+Documentación interactiva (Swagger): https://wanderlog-i0d8.onrender.com/swagger-ui.html
